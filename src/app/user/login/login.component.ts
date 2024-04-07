@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../user.service';
-import { Router } from 'express';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../user.service'
 
 @Component({
   selector: 'app-login',
@@ -10,12 +9,13 @@ import { Router } from 'express';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  
   returnUrl: string = '';
+ 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
-
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -23,13 +23,15 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
+
   ngOnInit() {
     this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'];
   }
 
-  login() {
+  login():void {
     if(this.loginForm.invalid){
-      return;
+      const { email, password }= this.loginForm.value
+      return this.userService.login(email!, password!)
     }
    
   }
