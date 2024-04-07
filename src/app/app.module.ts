@@ -7,6 +7,8 @@ import { CoreModule } from './core/core.module';
 import { IonicModule } from '@ionic/angular';
 import { UserModule } from './user/user.module';
 import { HomeComponent } from './home/home.component';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,15 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     CoreModule,
+    SharedModule,
     IonicModule,
     UserModule,
+    HttpClientModule,
     AppRoutingModule,
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })
