@@ -5,16 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { IonicModule } from '@ionic/angular';
+import { UserModule } from './user/user.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
-    IonicModule
+    IonicModule,
+    UserModule,
+    AppRoutingModule,
   ],
   providers: [
     provideClientHydration()
